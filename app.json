@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6ff6fe18-b961-4b79-9443-be052a7f3096"
+      }
+    },
+    "owner": "sarimsaljook"
   }
 }

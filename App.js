@@ -1,14 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, Image, Text } from 'react-native';
 import { GiftedChat, Send, Bubble } from 'react-native-gifted-chat';
 import { useEffect, useState, useCallback } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 export default function App() {
 
-  const [messages, setMessages] = useState([])
+  const [messages, setMessages] = useState([]);
+
+  const Stack = createNativeStackNavigator();
 
   useEffect(() => {
     setMessages([
@@ -25,24 +29,20 @@ export default function App() {
     ])
   }, []);
 
-  function HeaderTitle({navigation}) {
+  function HeaderTitle() {
     return (
       <View style={{flexDirection: 'row', marginRight: 15}}>
-        <View style={{justifyContent: 'center'}}>
-          <Icon name="angle-left" size={30} color="#1841c7" />
-        </View>
+    
         <View style={{flex: 1}}>
           <Image
-            source={{
-              uri:
-                'https://www.techup.co.in/wp-content/uploads/2020/03/techup_final_logo.png',
-            }}
-            style={{widith: 100, height: 60, resizeMode: 'contain'}}
+            source={require('./assets/cookmatelogo.png')}
+            style={{widith: 100, height: 60, resizeMode: 'contain', marginTop: 30}}
           />
+          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ textAlign: 'center', marginTop: 20, fontSize: 20, fontWeight: 'bold' }}>Your Cookmate</Text>
+            </View>
         </View>
-        <View style={{justifyContent: 'center', padding: 5}}>
-          <MaterialCommunityIcons name="cart" size={30} color="#1841c7" />
-        </View>
+       
       </View>
     );
   }
@@ -94,6 +94,10 @@ export default function App() {
   };
 
   return (
+    <SafeAreaProvider>
+    
+    <HeaderTitle /> 
+  
     <GiftedChat
     messages={messages}
     onSend={messages => onSend(messages)}
@@ -106,6 +110,7 @@ export default function App() {
     scrollToBottomComponent={scrollToBottomComponent}
     renderBubble={renderBubble}
   />
+  </SafeAreaProvider>
   );
 }
 
