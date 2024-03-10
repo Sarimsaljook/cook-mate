@@ -102,6 +102,7 @@ export default function App() {
                     name: 'Cooking Assistant',
                     avatar: require("./assets/cookmatelogo.png"),
                   },
+                  image: recipe.strMealThumb
                 },
               ]),
             );
