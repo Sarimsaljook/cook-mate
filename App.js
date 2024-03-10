@@ -53,6 +53,8 @@ export default function App() {
     const regex = /^give me the recipe for (.+)$/i;
     const match = userPrompt.trim().match(regex);
 
+    try{
+
     switch(userPrompt.toLowerCase()) {
       case "give me a recipe":
         axios.get("https://www.themealdb.com/api/json/v1/1/random.php")
@@ -197,6 +199,10 @@ export default function App() {
     } 
 
     }
+
+  } catch(err) {
+    console.log(err);
+  }
 
   }, []);
 
